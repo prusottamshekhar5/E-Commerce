@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopo — Modern E-Commerce</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <p>🎉 Free Express Shipping on orders over $50 | Use code <strong>SHOPO20</strong> for 20% off!</p>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#"><i class="fa-solid fa-bag-shopping"></i> Shopo</a>
+            </div>
+
+            <nav class="main-nav">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#shop" class="nav-link">Shop</a>
+                <a href="#categories" class="nav-link">Categories</a>
+                <a href="#deals" class="nav-link">Deals</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search products...">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <button class="icon-btn" id="wishlistBtn" title="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="badge" id="wishlistCount">0</span>
+                </button>
+                <button class="icon-btn" id="cartBtn" title="Cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="hero-tag">New Season Arrival</span>
+                <h1>Discover Style & Innovation at <span>Shopo</span></h1>
+                <p>Explore our curated selection of premium electronics, trendy fashion, gorgeous home decor, and statement accessories built for modern living.</p>
+                <div class="hero-btns">
+                    <a href="#shop" class="btn btn-primary">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#categories" class="btn btn-outline">Explore Categories</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80" alt="Shopo Fashion & Lifestyle">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Banner -->
+    <section class="features-banner">
+        <div class="container features-grid">
+            <div class="feature-item">
+                <i class="fa-solid fa-truck-fast"></i>
+                <div>
+                    <h4>Free Worldwide Shipping</h4>
+                    <p>On all orders above $50</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-rotate-left"></i>
+                <div>
+                    <h4>30 Days Return</h4>
+                    <p>Hassle-free money back guarantee</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div>
+                    <h4>Secure Checkout</h4>
+                    <p>Protected by 256-bit SSL encryption</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-headset"></i>
+                <div>
+                    <h4>24/7 Support</h4>
+                    <p>Dedicated customer assistance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Shop Container with Sidebar & Products -->
+    <main class="container main-shop-layout" id="shop">
+        <!-- Sidebar Filters -->
+        <aside class="filter-sidebar">
+            <div class="filter-group">
+                <h3>Categories</h3>
+                <ul class="category-list" id="categoryFilters">
+                    <li><button class="cat-btn active" data-category="all">All Products</button></li>
+                    <li><button class="cat-btn" data-category="electronics">Electronics</button></li>
+                    <li><button class="cat-btn" data-category="apparel">Apparel</button></li>
+                    <li><button class="cat-btn" data-category="accessories">Accessories</button></li>
+                    <li><button class="cat-btn" data-category="home">Home & Living</button></li>
+                </ul>
+            </div>
+
+            <div class="filter-group">
+                <h3>Filter by Price</h3>
+                <div class="price-slider-wrapper">
+                    <input type="range" id="priceRange" min="0" max="300" value="300">
+                    <div class="price-output">Max Price: $<span id="priceVal">300</span></div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Rating</h3>
+                <div class="rating-filters">
+                    <label><input type="checkbox" class="rating-filter" value="4"> 4★ & above</label>
+                    <label><input type="checkbox" class="rating-filter" value="3"> 3★ & above</label>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Product Grid Area -->
+        <section class="products-area">
+            <div class="shop-header-bar">
+                <p id="productCountShowing">Showing all products</p>
+                <div class="sort-wrapper">
+                    <label for="sortSelect">Sort by:</label>
+                    <select id="sortSelect">
+                        <option value="featured">Featured</option>
+                        <option value="low-high">Price: Low to High</option>
+                        <option value="high-low">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product-grid" id="productGrid">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Slide-out Shopping Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Shopping Cart (<span id="cartDrawerCount">0</span>)</h3>
+            <button class="close-cart-btn" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <!-- Cart items populated here -->
+        </div>
+        <div class="cart-footer">
+            <div class="promo-box">
+                <input type="text" id="promoInput" placeholder="Promo code (e.g. SHOPO20)">
+                <button id="applyPromoBtn">Apply</button>
+            </div>
+            <div class="subtotal-row">
+                <span>Subtotal:</span>
+                <span id="cartSubtotal">$0.00</span>
+            </div>
+            <div class="discount-row" id="discountRow" style="display: none;">
+                <span>Discount (20%):</span>
+                <span id="cartDiscount">-$0.00</span>
+            </div>
+            <div class="total-row">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn btn-primary checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Product Quick View Modal -->
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body" id="modalBody">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal Simulation -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content checkout-modal-content">
+            <button class="close-modal" id="closeCheckoutModal"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Checkout Details</h2>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required placeholder="Alex Johnson">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" required placeholder="alex@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Shipping Address</label>
+                    <input type="text" required placeholder="123 Market Street, Suite 4B">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="text" required placeholder="New York">
+                    </div>
+                    <div class="form-group">
+                        <label>Postal Code</label>
+                        <input type="text" required placeholder="10001">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Card Information</label>
+                    <input type="text" required placeholder="4242 •••• •••• 4242">
+                </div>
+                <button type="submit" class="btn btn-primary checkout-submit-btn">Place Order Securely</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3><i class="fa-solid fa-bag-shopping"></i> Shopo</h3>
+                <p>Your ultimate destination for premier tech, modern apparel, and exquisite lifestyle goods.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#shop">Shop Products</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#deals">Special Deals</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Subscribe to receive updates, access to exclusive deals, and more.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to Shopo!');">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Shopo E-Commerce Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript File Reference -->
+    <script src="script.js"></script>
+</body>
+</html>
